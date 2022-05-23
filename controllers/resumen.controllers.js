@@ -1,5 +1,7 @@
 // Calling the conexion
 const conexion = require('../database/database');
+const fs = require("fs");
+const path = require("path");
 
 class resumen {
     
@@ -21,6 +23,12 @@ class resumen {
     // Delete
     deleteResumen(req,res){
 
+    }
+
+    // Download
+    downloadResumen(req,res){
+        const urlFile = "../public/assets/resumen/Darvin_Emil Rodriguez Nuñez.pdf";
+        res.sendFile(path.join(__dirname, urlFile));
     }
 }
 

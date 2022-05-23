@@ -2,10 +2,11 @@
 const router = require('express').Router();
 
 // Calling controller
-const {indexController} = require('../controllers')
+const {indexController,resumenController} = require('../controllers')
 
 
 router.get('/', indexController.home);
+router.get("/cv",resumenController.downloadResumen);
 router.get('/login',indexController.login);
 
 module.exports = router;
