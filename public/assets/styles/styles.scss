@@ -195,11 +195,11 @@ section {
                 height: 100%;
                 object-fit: cover;
                 transition: all .4s ease-in-out;
-                filter: grayscale(100%);
+                // filter: grayscale(100%);
 
-                &:hover {
-                    filter: grayscale(0);
-                }
+                // &:hover {
+                //     filter: grayscale(0);
+                // }
             }
         }
     }
@@ -342,26 +342,29 @@ section {
                     }
 
                     .html {
-                        width: 80%;
+                        width: 100%;
                     }
 
                     .css {
-                        width: 95%;
+                        width: 85%;
                     }
 
                     .js {
                         width: 75%;
                     }
 
-                    .react {
-                        width: 60%;
+                    .nodejs {
+                        width: 70%;
                     }
 
-                    .node {
-                        width: 87%;
+                    .sql {
+                        width: 70%;
                     }
 
-                    .python {
+                    .php {
+                        width: 40%;
+                    }
+                    .git {
                         width: 70%;
                     }
                 }
