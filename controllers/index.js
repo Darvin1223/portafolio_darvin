@@ -3,5 +3,7 @@ module.exports = {
     adminController: require('./admin.controllers'),
     portafolioController: require("./portafolio.controllers"),
     resumenController: require("./resumen.controllers"),
-    contactController: require("./contact.controllers")
+    contactController: require("./contact.controllers"),
+    authController: require("./auth.controller"),
+    about_MeController: require("./about_me_controllers")
 };
