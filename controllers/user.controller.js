@@ -19,15 +19,15 @@ class Users{
         console.log(email,name,password,rol);
 
 
-        conexion.query("INSERT INTO `user` SET ?", {user_name:name, user_email:email, user_password:passwordHaash, user_rol:rol},async (resul,err) =>{
-            if(err){
-                console.log(err)
-            }else{
-                console.log("se envio")
-                return res.redirect('/users');
-            }
+        // conexion.query("INSERT INTO `user` SET ?", {user_name:name, user_email:email, user_password:passwordHaash, user_rol:rol},async (resul,err) =>{
+        //     if(err){
+        //         console.log(err)
+        //     }else{
+        //         console.log("se envio")
+        //         return res.redirect('/users');
+        //     }
           
-        })
+        // })
 
         try{
             conexion.query("INSERT INTO `user` SET ?", {user_name:name, user_email:email, user_password:passwordHaash, user_rol:rol},async (resul) =>{
