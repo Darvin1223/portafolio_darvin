@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const cors = require("cors");
 const path = require("path");
 const localIpV4Address = require("local-ipv4-address");
 const expressLayouts = require("express-ejs-layouts");
@@ -16,6 +17,10 @@ dotenv.config({
 
 // Setting server
 const server = express();
+
+// Setting the cors.
+server.use(cors());
+
 
 // Setting PORT AND HOST
 server.set('port', process.env.PORT || 3000);
@@ -48,12 +53,12 @@ server.use(express.static(path.join(path.join(__dirname, 'public'))));
 server.use(error);
 
 // Listing 
-// server.listen(PORT, ()=>{
-//     console.log(`Page service is running at http://${HOST}:${PORT}`);
-// });
-
-localIpV4Address().then((ipAddress)=>{
-    server.listen(PORT, ()=>{
-        console.log(`Page service is running on local http://${HOST}:${PORT} || Network http://${ipAddress}:${PORT}`);
-    });
+server.listen(PORT, ()=>{
+    console.log(`Page service is running at http://${HOST}:${PORT}`);
 });
+
+// localIpV4Address().then((ipAddress)=>{
+//     server.listen(PORT, ()=>{
+//         console.log(`Page service is running on local http://${HOST}:${PORT} || Network http://${ipAddress}:${PORT}`);
+//     });
+// });

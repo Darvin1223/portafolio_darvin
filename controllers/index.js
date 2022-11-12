@@ -5,5 +5,7 @@ module.exports = {
     resumenController: require("./resumen.controllers"),
     contactController: require("./contact.controllers"),
     authController: require("./auth.controller"),
-    about_MeController: require("./about_me_controllers")
+    about_MeController: require("./about_me_controllers"),
+    certificateController: require("./certificates.controller.js"),
+    userController: require("./user.controller")
 };
