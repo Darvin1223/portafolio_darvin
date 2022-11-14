@@ -6,70 +6,46 @@
         Aqui algunos de mis certificados.
     </p>
     <div class="portfolios">
-        <div class="portfolio-item">
-            <div class="image">
-                <img src="assets/img/Curso_de_Introducción_al_Desarrollo_Web_HTML_y_CSS.jpg" alt="Certificado Google">
-            </div>
-            <div class="hover-items">
-                <h3 class="texto-centrado title_certificate">Introducción al Desarrollo Web</h3>
-                <p class="portafolio-tecnologia">Empresa:
-                    <ul class="portafolio-tecnologia__list">
-                        <li>Google</li>
-                    </ul>
-                </p>
-                <div class="icons">
-                    <!-- <a href="#" class="icon">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="icon">
-                        <i class="fas fa-globe"></i>
-                    </a> -->
-                    <!-- <a href="#" class="icon">
-                        <i class="fab fa-youtube"></i>
-                    </a> -->
-
-                    <!-- <a href="https://hechos.ar/" target="_blank" class="icon">
-                        <i class="fas fa-globe"></i>
-                    </a> -->
-                    <a href="/Resumen-Darvin-Rodriguez" target="_blank" class="main-btn btn-certificado">
-                        <span class="btn-text">Descargar Certificado</span>
-                        <span class="btn-icon"><i class="fas fa-download"></i></span>
-                    </a>
+        <% if(certificates){ %> 
+            <% certificates.forEach(certificate => { %>
+                <div class="portfolio-item">
+                    <div class="image">
+                        <img src="assets/certificates/<%= certificate.certificados_img %> " alt="Certificado de <%= certificate.certificados_empresa %> >">
+                    </div>
+                    <div class="hover-items">
+                        <h3 class="texto-centrado title_certificate"><%= certificate.certificados_name %> </h3>
+                        <p class="portafolio-tecnologia">Empresa:
+                            <ul class="portafolio-tecnologia__list">
+                                <li><%= certificate.certificados_empresa %></li>
+                            </ul>
+                        </p>
+                        <div class="icons">
+                            <!-- <a href="#" class="icon">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="icon">
+                                <i class="fas fa-globe"></i>
+                            </a> -->
+                            <!-- <a href="#" class="icon">
+                                <i class="fab fa-youtube"></i>
+                            </a> -->
+                            <div class="btn_container">
+                                <!-- <a href="<%=// certificate.certificados_url %> >" target="_blank" class="main-btn btn-certificado mb-2">
+                                    <span class="btn-text">Verificar Certificado</span>
+                                    <span class="btn-icon"><i class="fas fa-globe"></i></span>
+                                    
+                                </a> -->
+                                <a href="/certificate_download?id=<%= certificate.certificados_id  %> " target="_blank" class="main-btn btn-certificado">
+                                    <span class="btn-text">Descargar Certificado</span>
+                                    <span class="btn-icon"><i class="fas fa-download"></i></span>
+                                </a>
+                            </div>
+                           
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="portfolio-item">
-            <div class="image">
-                <img src="assets/img/Curso_de_Introducción_al_Desarrollo_Web_HTML_y_CSS_2.jpg" alt="Certificado Google">
-            </div>
-            <div class="hover-items">
-                <h3 class="texto-centrado title_certificate">Introducción al Desarrollo Web 2</h3>
-                <p class="portafolio-tecnologia">Empresa:
-                    <ul class="portafolio-tecnologia__list">
-                        <li>Google</li>
-                    </ul>
-                </p>
-                <div class="icons">
-                    <!-- <a href="#" class="icon">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="icon">
-                        <i class="fas fa-globe"></i>
-                    </a> -->
-                    <!-- <a href="#" class="icon">
-                        <i class="fab fa-youtube"></i>
-                    </a> -->
-
-                    <!-- <a href="https://hechos.ar/" target="_blank" class="icon">
-                        <i class="fas fa-globe"></i>
-                    </a> -->
-                    <a href="/Resumen-Darvin-Rodriguez" target="_blank" class="main-btn btn-certificado">
-                        <span class="btn-text">Descargar Certificado</span>
-                        <span class="btn-icon"><i class="fas fa-download"></i></span>
-                    </a>
-                </div>
-            </div>
-        </div>
+          <%  }); %> 
+        <% } %> 
         
     </div>
 </section>

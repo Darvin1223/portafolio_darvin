@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "set NODE_ENV=development&& nodemon server.js",
-    "prod": "set NODE_ENV=production&& nodemon server.js",
+    "prod": "set NODE_ENV=production&& node server.js",
     "dev_linux": "export NODE_ENV=development&& nodemon server.js"
   },
   "repository": {

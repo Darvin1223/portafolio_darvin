@@ -1,60 +1,69 @@
 <div class="row">
-    <div class="col">
-      <div class="card">
-        <!-- Card header -->
-        <div class="card-header border-0 d-flex justify-content-between">
-          <h3 class="mb-0">Mis certificados</h3>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Agregar Certificados
-          </button>
-        </div>
-        <!-- Light table -->
-        <div class="table-responsive">
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col" class="sort" data-sort="name">Titulo</th>
-                <th scope="col" class="sort" data-sort="budget">fecha entrega</th>
-                <th scope="col" class="sort" data-sort="status">Empresa</th>
-                <th scope="col" class="sort" data-sort="completion">url</th>
-                <th scope="col">Accion</th>
-              </tr>
-            </thead>
-            <tbody class="list">
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                  
-                    <div class="media-body">
-                      <span class="name mb-0 text-sm">Nombre del titulo`</span>
+  <div class="col">
+    <div class="card">
+      <!-- Card header -->
+      <div class="card-header border-0 d-flex justify-content-between">
+        <h3 class="mb-0">Mis certificados</h3>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        >
+          Agregar Certificados
+        </button>
+      </div>
+      <!-- Light table -->
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col" class="sort" data-sort="name">Titulo</th>
+              <th scope="col" class="sort" data-sort="budget">fecha entrega</th>
+              <th scope="col" class="sort" data-sort="status">Empresa</th>
+              <th scope="col" class="sort" data-sort="completion">url</th>
+              <!-- <th scope="col">Agregar Foto</th> -->
+              <th scope="col">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody class="list">
+            <% if(certificates){ %> 
+              <% certificates.forEach(certificate => { %>
+                <tr>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <div class="media-body">
+                        <span class="name mb-0 text-sm"><%= certificate.certificados_name %> </span>
+                      </div>
                     </div>
-                  </div>
-                </th>
-                <td class="budget">
-                  fecha de entrega
-                </td>
-                <!-- <td>
-                  <span class="badge badge-dot mr-4">
-                    <i class="bg-warning"></i>
-                    <span class="status">pending</span>
-                  </span>
-                </td> -->
-             
-                <td class="budget">
-                    Nombre de la empresa
+                  </th>
+                  <td class="budget"><%= certificate.certificados_fecha %> </td>
+                  <!-- <td>
+                      <span class="badge badge-dot mr-4">
+                        <i class="bg-warning"></i>
+                        <span class="status">pending</span>
+                      </span>
+                    </td> -->
+    
+                  <td class="budget"><%= certificate.certificados_empresa %></td>
+                  <td class="budget">
+                    <a href="#"><%= certificate.certificados_url %></a>
                   </td>
-                <td class="budget">
-                    <a href="#">URL</a>
+                  <!-- <td class="text-right">
+                    <button class="btn btn-success" data-target="#exampleModal">Agregar foto</button>
+                    
+                  </td> -->
+                  <td class="text-right">
+                    <a href="" class="btn btn-danger">Eliminar</a>
                   </td>
-                <td class="text-right">
-                    <a href="" class="btn btn-danger">Eliminar</a> 
-                </td>
-       
-            </tbody>
-          </table>
-        </div>
-        <!-- Card footer -->
-        <!-- <div class="card-footer py-4">
+                </tr>
+             <% }); %> 
+            <% } %> 
+          </tbody>
+        </table>
+      </div>
+      <!-- Card footer -->
+      <!-- <div class="card-footer py-4">
           <nav aria-label="...">
             <ul class="pagination justify-content-end mb-0">
               <li class="page-item disabled">
@@ -79,28 +88,130 @@
             </ul>
           </nav>
         </div> -->
-      </div>
     </div>
   </div>
-  <!-- Button trigger modal -->
+</div>
+<!-- Button trigger modal -->
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar certificado</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/upload_certificate" enctype="multipart/form-data" method="post">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  >Titulo del certificado</span
+                >
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                name="title"
+                id="title"
+                placeholder="Nombre del certificado"
+                aria-label="Nombre del certificado"
+                aria-describedby="basic-addon1"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2"
+                  >Fecha de entrega</span
+                >
+              </div>
+              <input
+                type="date"
+                class="form-control"
+                name="fecha"
+                id="fecha"
+                placeholder="Fecha de entrega"
+                aria-label="Fecha de entrega"
+                aria-describedby="basic-addon2"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3"
+                  >Nombre de la empresa</span
+                >
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                name="name_empresa"
+                id="name_empresa"
+                placeholder="Nombre de la empresa"
+                aria-label="Nombre de la empresa"
+                aria-describedby="basic-addon3"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon4">URL</span>
+              </div>
+             <input type="url" class="form-control"
+             name="url_certificate"
+             id="url_certificate"
+             placeholder="URL del certificado"
+             aria-label="URL del certificado"
+             aria-describedby="basic-addon4">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon5">Certificado</span>
+              </div>
+              <input type="file" multiple name="certificate" id="certificate" class="form-control">
+            </div>
+          </div>
+          <!-- <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon5">Imagen del certificado</span>
+              </div>
+              <input type="file" name="img_certificate" id="img_certificate" class="form-control">
+            </div>
+          </div> -->
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <input type="submit" class="btn btn-primary" value="Guardar" />
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>

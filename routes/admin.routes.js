@@ -5,6 +5,7 @@ const router = require('express').Router();
 const multer = require('multer');
 const path = require('path');
 const {v4: uuidv4 } = require('uuid');
+const verifyLoggedIn = require("../middleware/auth_verification.middleware.js");
 
 // Configurates de folders and destinations
 const storageResumen = multer.diskStorage({
@@ -16,6 +17,13 @@ const storageResumen = multer.diskStorage({
 const storageCertificates = multer.diskStorage({
     destination: 'public/assets/certificates',
     filename: (req,file,cb) => {
+        cb(null, uuidv4() + path.extname(file.originalname).toLocaleLowerCase());
+    }
+});
+
+const storageImgCertificare = multer.diskStorage({
+    destination: 'public/assets/img_certificate',
+    filename: (req,file,cb)=>{
         cb(null, uuidv4() + path.extname(file.originalname).toLocaleLowerCase());
     }
 });
@@ -39,15 +47,17 @@ const {adminController,portafolioController,about_MeController,certificateContro
 // Making routes
 
 /* Gets */
-router.get('/admin', adminController.index);
-router.get('/portafolio', portafolioController.showPortafolios);
-router.get("/about_me",about_MeController.Show_abaout_me_admin);
-router.get("/certificates", certificateController.show_certificate_Admin);
-router.get("/users", userController.show_users);
+router.get('/admin', verifyLoggedIn,adminController.index);
+router.get('/portafolio',verifyLoggedIn, portafolioController.showPortafolios);
+router.get("/about_me",verifyLoggedIn,about_MeController.Show_abaout_me_admin);
+router.get("/certificates", verifyLoggedIn,certificateController.show_certificate_Admin);
+router.get("/users", verifyLoggedIn,userController.show_users_admin);
 
 
 /* POST */
-router.post("/create_user", userController.create_user);
+router.post("/create_user", verifyLoggedIn,userController.create_user);
+router.post("/upload_certificate",verifyLoggedIn,uploadCertificates.array("certificate",2), function (req,res,next){certificateController.add_certificate_Admin(req,res,next)});
+// router.post("/upload_certificate",uploadCertificates.single("certificate"),uploadImgCertificates.single("img_certificate"),certificateController.add_certificate_Admin);
 
 
 // Export module and route

@@ -1,8 +1,8 @@
 const express = require("express");
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config({path : __dirname + '/env/' + process.env.NODE_ENV + '.env'});;
 const cors = require("cors");
 const path = require("path");
-const localIpV4Address = require("local-ipv4-address");
+// const localIpV4Address = require("local-ipv4-address");
 const expressLayouts = require("express-ejs-layouts");
 const session = require('./middleware/sessions.middleware');
 const error = require('./middleware/errors.middleware');
@@ -11,9 +11,6 @@ const error = require('./middleware/errors.middleware');
 const {indexRouter,adminRouter} = require('./routes');
 
 // DotEnv config
-dotenv.config({
-    path: __dirname + '/env/' + process.env.NODE_ENV + '.env'
-});
 
 // Setting server
 const server = express();
