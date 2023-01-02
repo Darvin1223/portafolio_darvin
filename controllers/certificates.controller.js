@@ -46,7 +46,7 @@ class certificate {
         }, (error) => {
             if(error){
                 console.log(error)
-            }else{
+            }else{controllers/portafolio.controllers.js
                 res.redirect("/certificates");
             }
         })

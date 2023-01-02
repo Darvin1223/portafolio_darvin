@@ -28,6 +28,12 @@ const storageImgCertificare = multer.diskStorage({
     }
 });
 
+const storageProjects = multer.diskStorage({
+    destination:"public/assets/img_projects",
+    filename: (req,file,cb) => {
+        cb(null, uuidv4() + path.extname(file.originalname).toLowerCase());
+    }
+});
 // Updating to the destinetion
 
 const uploadResumen = multer({
@@ -40,6 +46,10 @@ const uploadCertificates = multer({
     dest: 'public/assets/certificates'
 });
 
+const uploadProjectsImg = multer({
+    storage: storageProjects,
+    dest:"public/assets/img_projects"
+});
 
 // Calling controller 
 const {adminController,portafolioController,about_MeController,certificateController,userController} = require('../controllers');
@@ -58,7 +68,9 @@ router.get("/users", verifyLoggedIn,userController.show_users_admin);
 router.post("/create_user", verifyLoggedIn,userController.create_user);
 router.post("/upload_certificate",verifyLoggedIn,uploadCertificates.array("certificate",2), function (req,res,next){certificateController.add_certificate_Admin(req,res,next)});
 // router.post("/upload_certificate",uploadCertificates.single("certificate"),uploadImgCertificates.single("img_certificate"),certificateController.add_certificate_Admin);
-
+router.post("/upload_project", verifyLoggedIn,uploadProjectsImg.single("proyecto_img"), function(req,res,next){
+    portafolioController.addPortafolioProject(req,res,next)
+})
 
 // Export module and route
 module.exports = router;
